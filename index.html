@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etch A Sketch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+    </div>
+
+    <script type="text/javascript">
+const container = document.querySelector('.container');
+
+        for (let i = 1; i < 257; i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('cell');
+            cell.textContent = ('hello');
+            cell.style.width = "100px";
+            cell.style.height = "100px";
+            cell.style.background = "red";
+            cell.style.color = "white";
+            container.appendChild(cell);
+        };
+        
+
+
+
+
+
+
+    </script>
+</body>
+</html>
+
+<!--
+
+
+for (let i = 1; i < 257; i++) {
+       const cell = document.createElement('div');
+       cell.classList.add('cell');
+        cell.textContent = 'Hey I\'m red!';
+        cell.style.cssText = 'color: white;';
+        cell.style.width = "100px";
+        cell.style.height = "100px";
+        cell.style.background = "red";
+        cell.style.color = "white";
+        container.appendChild(cell);
+        }  
+
+      cell.addEventListener("onmouseover", () => {
+            cell.style.backgroundColor  = 'blue';
+            console.log('Event triggered');
+        });
+-->
