@@ -11,19 +11,34 @@
     <div class="container">
     </div>
 
-    <script type="text/javascript">
+    <script>
 const container = document.querySelector('.container');
 
         for (let i = 1; i < 257; i++) {
             const cell = document.createElement('div');
-            cell.classList.add('cell');
-            cell.textContent = ('hello');
+            //cell.classList.add('cell');
+            //cell.textContent = ('hello');
             cell.style.width = "100px";
             cell.style.height = "100px";
             cell.style.background = "red";
-            cell.style.color = "white";
+            cell.style.color = "black";
+            
+            cell.addEventListener("mouseenter", function (event) {
+                // highlight the mouseenter target
+                event.target.style.background = "white";
+
+            setTimeout(function(){
+                event.target.style.color = "";
+             }, 500);
+            }, false);
+
+            cell.addEventListener("mouseover", function( event ) {
+                // highlight the mouseover target
+                event.target.style.background = "orange";})
+            
+
             container.appendChild(cell);
-        };
+        }
         
 
 
@@ -37,21 +52,10 @@ const container = document.querySelector('.container');
 
 <!--
 
+    // reset the color after a short delay
+                setTimeout(function() {
+                     event.target.style.background = "red";
+                     }, 500);
+                    }, false);
 
-for (let i = 1; i < 257; i++) {
-       const cell = document.createElement('div');
-       cell.classList.add('cell');
-        cell.textContent = 'Hey I\'m red!';
-        cell.style.cssText = 'color: white;';
-        cell.style.width = "100px";
-        cell.style.height = "100px";
-        cell.style.background = "red";
-        cell.style.color = "white";
-        container.appendChild(cell);
-        }  
-
-      cell.addEventListener("onmouseover", () => {
-            cell.style.backgroundColor  = 'blue';
-            console.log('Event triggered');
-        });
 -->
