@@ -8,8 +8,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button id="customizeGrid">Erase/Reset</button>
-    <div class="container">
+    <div class="content">
+        <h1>Etch-a-Sketch</h1>
+        <button id="customizeGrid">Erase/Reset</button>
+        <div class="container">
+        </div>
+    </div>
     </div>
 
     <script>
@@ -17,51 +21,26 @@ const container = document.querySelector('.container');
 
 const gridCustom = document.querySelector("#customizeGrid");
 
+gridCustom.addEventListener('click', ()=>{ // we only want to add this listener once
+    resetSize()
+})
+
+
 function resetSize() {
-    gridCustom.addEventListener('click', () =>{
-        console.log('hi');
-        let number = prompt("What size would you like the grid to be? (1-100)");
-        container.style.gridTemplateRows = `repeat(${number}, 5fr)`;
-        container.style.gridTemplateColumns = `repeat(${number}, 5fr)`;
-    })
-}
-resetSize();
+        let number = prompt("What size would you like the grid to be? (1-16)");
+        container.style.gridTemplateRows = `repeat(${number}, 1fr)`;
+        container.style.gridTemplateColumns = `repeat(${number}, 1fr)`;
+    }
 
-
-function initializeGrid () {
-    for (let i = 1; i < 257; i++) {
-            const cell = document.createElement('div');
-            cell.style.cssText = "border: 1px solid black; height: 25px; width: 25px";  
-            cell.style.background = "red";
-
-
-            
-            cell.addEventListener("mouseenter", function (event) {
-                // highlight the mouseenter target
-                event.target.style.background = "white";
-
-            setTimeout(function(){
-                event.target.style.color = "";
-             }, 500);
-            }, false);
-
-            cell.addEventListener("mouseover", function( event ) {
-                // highlight the mouseover target
-                event.target.style.background = "orange";})
-            
-
-            container.appendChild(cell);
-}}
-initializeGrid();
 
 function createGrid (size){
 
     container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
     container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
 
-        for (let i = 1; i < size*size; i++) {
+        for (let i = 0; i < size*size; i++) {
             const cell = document.createElement('div');
-            cell.style.cssText = "border: 1px solid black; height: 25px; width: 25px";  
+            cell.style.cssText = "border: 1px solid black;"  
             cell.style.background = "red";
 
 
@@ -82,7 +61,13 @@ function createGrid (size){
 
             container.appendChild(cell);
         }}
-        createGrid();
+        function clearGrid(){
+            gridCustom.addEventListener('click', e=>{
+                cell.style.backgroundColor = "black"
+           })
+           clearGrid();  
+        }    
+createGrid(16);
     </script>
 </body>
 </html>
