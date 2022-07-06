@@ -10,63 +10,64 @@
 <body>
     <div class="content">
         <h1>Etch-a-Sketch</h1>
-        <button id="customizeGrid">Erase/Reset</button>
+        <button>Erase/Reset</button>
         <div class="container">
+        </div>
         </div>
     </div>
     </div>
-
     <script>
-const container = document.querySelector('.container');
+const gridCustom = document.querySelector("button");
 
-const gridCustom = document.querySelector("#customizeGrid");
+const container = document.querySelector(".container"); 
 
 gridCustom.addEventListener('click', ()=>{ // we only want to add this listener once
     resetSize()
 })
 
 
-function resetSize() {
-        let number = prompt("What size would you like the grid to be? (1-16)");
+function resetSize(){
+        
+        let number = prompt("What size would you like the grid to be? (1-100)");
         container.style.gridTemplateRows = `repeat(${number}, 1fr)`;
         container.style.gridTemplateColumns = `repeat(${number}, 1fr)`;
-    }
+        createGrid(number); // call the createGrid here and pass the number they entered as the argument. 
+}
+        
+        
+// 16x16 grid
+function createGrid(size){
 
+//    get rid of resetSize here //
 
-function createGrid (size){
 
     container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
     container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+    
+    for (let i = 0; i < size*size; i++) {
+        
+        let cell = document.createElement("div");
+        cell.style.backgroundColor = "red";
+        container.appendChild(cell);
 
-        for (let i = 0; i < size*size; i++) {
-            const cell = document.createElement('div');
-            cell.style.cssText = "border: 1px solid black;"  
-            cell.style.background = "red";
+        //change background color of a cell on hover
+        cell.addEventListener('mouseover', e=>{
+            cell.style.backgroundColor = "white";
+        })
 
 
-            
-            cell.addEventListener("mouseenter", function (event) {
-                // highlight the mouseenter target
-                event.target.style.background = "white";
-
-            setTimeout(function(){
-                event.target.style.color = "";
-             }, 500);
-            }, false);
-
-            cell.addEventListener("mouseover", function( event ) {
-                // highlight the mouseover target
-                event.target.style.background = "orange";})
-            
-
-            container.appendChild(cell);
-        }}
+        //function to reset the grid
         function clearGrid(){
             gridCustom.addEventListener('click', e=>{
-                cell.style.backgroundColor = "black"
+                cell.style.backgroundColor = "red"
            })
-           clearGrid();  
-        }    
+        }
+        
+
+        clearGrid();    
+    }
+}
+
 createGrid(16);
     </script>
 </body>
